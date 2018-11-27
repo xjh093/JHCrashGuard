@@ -43,7 +43,10 @@
 #pragma clang diagnostic ignored "-Wobjc-protocol-method-implementation"
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector{
-    NSMethodSignature *signature = [JHCrashGuard instanceMethodSignatureForSelector:@selector(crashGuard)];
+    NSMethodSignature *signature = [[self class] instanceMethodSignatureForSelector:aSelector];
+    if (!signature) {
+        signature =[JHCrashGuard instanceMethodSignatureForSelector:@selector(crashGuard)];
+    }
     return signature;
 }
 
