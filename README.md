@@ -5,7 +5,9 @@ crash guard，崩溃守护，防止崩溃
 
 # Some Bugs
 
-2.uncaught exception 'NSInvalidArgumentException', reason: '[NSXPCConnection sendInvocation]: A NULL reply block was passed into a message meant to be sent over a connection. (syncToKeyboardState:completionHandler:)' -2018-11-26
+✅2.keyboard will show:
+
+uncaught exception 'NSInvalidArgumentException', reason: '[NSXPCConnection sendInvocation]: A NULL reply block was passed into a message meant to be sent over a connection. (syncToKeyboardState:completionHandler:)' -2018-11-26
 
 ✅1.-[NSMethodSignature getArgumentTypeAtIndex:]: index (2) out of bounds [0, 1] -2018-11-26
 
