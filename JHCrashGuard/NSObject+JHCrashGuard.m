@@ -45,6 +45,13 @@
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector{
     NSMethodSignature *signature = [[self class] instanceMethodSignatureForSelector:aSelector];
     if (!signature) {
+        IMP originIMP = class_getMethodImplementation([NSObject class], @selector(methodSignatureForSelector:));
+        IMP currentIMP = class_getMethodImplementation([self class], @selector(methodSignatureForSelector:));
+        
+        if (originIMP != currentIMP){
+            return nil;
+        }
+        
         signature =[JHCrashGuard instanceMethodSignatureForSelector:@selector(crashGuard)];
     }
     return signature;
