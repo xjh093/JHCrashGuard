@@ -5,7 +5,7 @@ crash guard，崩溃守护，防止崩溃
 
 # Some Bugs
 
-3.dead loop. -2018-12-14
+❌3.dead loop. -2018-12-14
 
 ✅2.keyboard will show:
 
