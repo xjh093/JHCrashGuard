@@ -5,6 +5,8 @@ crash guard，崩溃守护，防止崩溃
 
 # Some Bugs
 
+3.dead loop. -2018-12-14
+
 ✅2.keyboard will show:
 
 uncaught exception 'NSInvalidArgumentException', reason: '[NSXPCConnection sendInvocation]: A NULL reply block was passed into a message meant to be sent over a connection. (syncToKeyboardState:completionHandler:)' -2018-11-26
