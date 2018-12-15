@@ -28,6 +28,7 @@
 //  SOFTWARE.
 
 #import "NSObject+JHCrashGuard.h"
+#import <objc/runtime.h>
 
 @interface JHCrashGuard : NSObject
 - (void)crashGuard;
