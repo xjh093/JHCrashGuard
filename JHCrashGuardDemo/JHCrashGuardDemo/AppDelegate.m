@@ -32,12 +32,17 @@
           @"实例: %@\n"
           @"方法: %@\n"
           @"类型: %@\n"
-          @"时间: %@",
+          @"时间: %@\n"
+          @"位置: %@\n"
+          @"堆栈: %@",
           userInfo[JHCrashGuardClassNameKey],
           userInfo[JHCrashGuardInstanceNameKey],
           userInfo[JHCrashGuardSelectorNameKey],
           [userInfo[JHCrashGuardIsClassMethodKey] boolValue] ? @"类方法" : @"实例方法",
-          userInfo[JHCrashGuardTimestampKey]);
+          userInfo[JHCrashGuardTimestampKey],
+          userInfo[JHCrashGuardErrorPlaceKey],
+          userInfo[JHCrashGuardCallStackSymbolsKey]
+          );
 
     // 可以在这里上报到服务器或进行其他处理
 }

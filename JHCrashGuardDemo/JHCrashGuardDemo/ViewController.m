@@ -20,6 +20,8 @@
     // Do any additional setup after loading the view.
     
     [self test];
+    [self test1];
+    [ViewController test2];
 }
 
 - (void)test
@@ -29,9 +31,16 @@
     [classA methodA];
     
     //
-    [ClassB methodB];
+    id array = @[].mutableCopy;
+    [array setObject:@"666" forKey:@"888"];
     
     //
+    id dic = @{}.mutableCopy;
+    [dic addObject:@"888"];
+}
+
+- (void)test1
+{
     id string = @"123";
     [string addObject:@"456"];
     NSLog(@"string:%@",string);
@@ -39,14 +48,11 @@
     //
     id number = @(3);
     NSLog(@"length:%@",@([number length]));
-    
-    //
-    id array = @[].mutableCopy;
-    [array setObject:@"666" forKey:@"888"];
-    
-    //
-    id dic = @{}.mutableCopy;
-    [dic addObject:@"888"];
+}
+
++ (void)test2
+{
+    [ClassB methodB];
 }
 
 @end

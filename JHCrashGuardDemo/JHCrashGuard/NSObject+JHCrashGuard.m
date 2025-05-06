@@ -71,18 +71,66 @@
     return [formatter stringFromDate:[NSDate date]];
 }
 
-+ (void)postUnrecognizedSelectorNotification:(Class)class instance:(NSString *)instance selector:(SEL)aSelector isClassMethod:(BOOL)isClassMethod {
++ (void)postUnrecognizedSelectorNotification:(Class)class instance:(NSString *)instance selector:(SEL)aSelector isClassMethod:(BOOL)isClassMethod
+{
+    NSString *errorPlace = [JHCrashGuard getMainCallStackSymbolMessageFromCallStackSymbols:[NSThread callStackSymbols]];
+    
     NSDictionary *userInfo = @{
         JHCrashGuardClassNameKey: NSStringFromClass(class),
         JHCrashGuardInstanceNameKey: instance,
         JHCrashGuardSelectorNameKey: NSStringFromSelector(aSelector),
         JHCrashGuardIsClassMethodKey: @(isClassMethod),
-        JHCrashGuardTimestampKey: [JHCrashGuard currentTimeString]
+        JHCrashGuardTimestampKey: [JHCrashGuard currentTimeString],
+        JHCrashGuardErrorPlaceKey: errorPlace,
+        JHCrashGuardCallStackSymbolsKey: [NSThread callStackSymbols],
     };
     
     [[NSNotificationCenter defaultCenter] postNotificationName:JHCrashGuardUnrecognizedSelectorNotification
                                                       object:nil
                                                     userInfo:userInfo];
+}
+
++ (NSString *)getMainCallStackSymbolMessageFromCallStackSymbols:(NSArray<NSString *> *)callStackSymbols
+{
+    //mainCallStackSymbolMsg的格式为   +[类名 方法名]  或者 -[类名 方法名]
+    __block NSString *mainCallStackSymbolMsg = nil;
+    
+    //匹配出来的格式为 +[类名 方法名]  或者 -[类名 方法名]
+    NSString *regularExpStr = @"[-\\+]\\[.+\\]";
+    
+    NSRegularExpression *regularExp = [[NSRegularExpression alloc] initWithPattern:regularExpStr options:NSRegularExpressionCaseInsensitive error:nil];
+    
+    for (int index = 2; index < callStackSymbols.count; index++) {
+        NSString *callStackSymbol = callStackSymbols[index];
+        
+        [regularExp enumerateMatchesInString:callStackSymbol options:NSMatchingReportProgress range:NSMakeRange(0, callStackSymbol.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+            if (result) {
+                NSString* tempCallStackSymbolMsg = [callStackSymbol substringWithRange:result.range];
+                
+                //get className
+                NSString *className = [tempCallStackSymbolMsg componentsSeparatedByString:@" "].firstObject;
+                className = [className componentsSeparatedByString:@"["].lastObject;
+                
+                NSBundle *bundle = [NSBundle bundleForClass:NSClassFromString(className)];
+                
+                //filter category and system class
+                if (![className hasSuffix:@")"] && bundle == [NSBundle mainBundle]) {
+                    mainCallStackSymbolMsg = tempCallStackSymbolMsg;
+                }
+                *stop = YES;
+            }
+        }];
+        
+        if (mainCallStackSymbolMsg.length) {
+            break;
+        }
+    }
+    
+    if (mainCallStackSymbolMsg == nil) {
+        mainCallStackSymbolMsg = @"崩溃方法定位失败，请查看函数调用栈来排查错误原因";
+    }
+    
+    return mainCallStackSymbolMsg;
 }
 
 - (void)crashGuard{}

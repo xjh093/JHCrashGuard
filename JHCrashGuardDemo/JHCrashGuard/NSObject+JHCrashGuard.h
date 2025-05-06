@@ -37,6 +37,8 @@ static NSString *const JHCrashGuardInstanceNameKey = @"instanceName";
 static NSString *const JHCrashGuardSelectorNameKey = @"selectorName";
 static NSString *const JHCrashGuardIsClassMethodKey = @"isClassMethod";
 static NSString *const JHCrashGuardTimestampKey = @"timestamp";
+static NSString *const JHCrashGuardErrorPlaceKey = @"errorPlace";
+static NSString *const JHCrashGuardCallStackSymbolsKey = @"callStackSymbols";
 static NSNotificationName const JHCrashGuardUnrecognizedSelectorNotification = @"JHCrashGuardUnrecognizedSelectorNotification";
 
 /// Handle crash of 'unrecognized selector'
