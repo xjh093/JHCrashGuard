@@ -27,8 +27,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 
-// version: 1.0.0
-// date: 2025-04-30 11:55:22
+// version: 1.1.0
+// date: 2025-05-06 11:08:55
 
 #import <Foundation/Foundation.h>
 
