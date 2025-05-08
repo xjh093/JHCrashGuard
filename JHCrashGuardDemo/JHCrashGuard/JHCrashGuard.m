@@ -86,13 +86,6 @@ static NSString *const kPersistedProtectedClassesKey = @"JHCrashGuard_PersistedC
 #else
         // 交换实例方法
         [self swizzleInstanceMethods];
-        
-//        class_getMethodImplementation()
-        
-//        Class metaClass = object_getClass([NSObject class]);
-//        _originalClassMethodSignatureIMP = class_getMethodImplementation(metaClass, @selector(methodSignatureForSelector:));
-//        _originalClassForwardInvocationIMP = class_getMethodImplementation(metaClass, @selector(forwardInvocation:));
-        
 #endif
         
         //
@@ -260,7 +253,6 @@ static NSString *const kPersistedProtectedClassesKey = @"JHCrashGuard_PersistedC
     });
     return [formatter stringFromDate:[NSDate date]];
 }
-
 
 
 #if kReplaceImplementation
