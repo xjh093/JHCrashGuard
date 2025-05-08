@@ -9,4 +9,9 @@
 
 @implementation ClassB
 
++ (void)methodBB
+{
+    NSLog(@"methodBB");
+}
+
 @end

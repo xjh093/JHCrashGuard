@@ -6,7 +6,7 @@
 //
 
 #import "AppDelegate.h"
-#import "NSObject+JHCrashGuard.h"
+#import "JHCrashGuard.h"
 
 @interface AppDelegate ()
 
@@ -14,37 +14,34 @@
 
 @implementation AppDelegate
 
+// 全局异常处理
+void RegisterExceptionHandler(void) {
+    NSSetUncaughtExceptionHandler(&HandleException);
+}
+
+void HandleException(NSException *exception) {
+    // 1. 解析并注册需要防护的类
+    [JHCrashGuard registerProtectedClassFromException:exception];
+    
+    // 2. 打印堆栈
+    NSLog(@"崩溃捕获: %@\n堆栈: %@", exception.reason, exception.callStackSymbols);
+    
+    // 3. 可以在这里上报崩溃信息
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    // 在App启动时注册通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCrashMessage:) name:JHCrashGuardUnrecognizedSelectorNotification object:nil];
+    // 注册异常处理器
+    RegisterExceptionHandler();
     
+    // 清空之前防护的类
+    //[JHCrashGuard resetPersistedProtectedClasses];
+    
+    // 启用防护（初始不防护任何类）
+    [JHCrashGuard enableCrashGuard];
+        
     return YES;
-}
-
-- (void)handleCrashMessage:(NSNotification *)note
-{
-    NSDictionary *userInfo = note.userInfo;
-    NSLog(@"检测到未实现的方法调用:\n"
-          @"类名: %@\n"
-          @"实例: %@\n"
-          @"方法: %@\n"
-          @"类型: %@\n"
-          @"时间: %@\n"
-          @"位置: %@\n"
-          @"堆栈: %@",
-          userInfo[JHCrashGuardClassNameKey],
-          userInfo[JHCrashGuardInstanceNameKey],
-          userInfo[JHCrashGuardSelectorNameKey],
-          [userInfo[JHCrashGuardIsClassMethodKey] boolValue] ? @"类方法" : @"实例方法",
-          userInfo[JHCrashGuardTimestampKey],
-          userInfo[JHCrashGuardErrorPlaceKey],
-          userInfo[JHCrashGuardCallStackSymbolsKey]
-          );
-
-    // 可以在这里上报到服务器或进行其他处理
 }
 
 #pragma mark - UISceneSession lifecycle

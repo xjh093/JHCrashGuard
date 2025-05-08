@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F8EE0C92DC1D42100E61CB9 /* NSObject+JHCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8EE0C72DC1D42100E61CB9 /* NSObject+JHCrashGuard.m */; };
+		3F8EE3422DCAFF3700E61CB9 /* JHCrashGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F8EE3412DCAFF3700E61CB9 /* JHCrashGuard.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3F8EE0A92DC1D3BF00E61CB9 /* JHCrashGuardDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JHCrashGuardDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F8EE0C62DC1D42100E61CB9 /* NSObject+JHCrashGuard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+JHCrashGuard.h"; sourceTree = "<group>"; };
-		3F8EE0C72DC1D42100E61CB9 /* NSObject+JHCrashGuard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JHCrashGuard.m"; sourceTree = "<group>"; };
+		3F8EE3402DCAFF3700E61CB9 /* JHCrashGuard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JHCrashGuard.h; sourceTree = "<group>"; };
+		3F8EE3412DCAFF3700E61CB9 /* JHCrashGuard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JHCrashGuard.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -68,8 +68,8 @@
 		3F8EE0C82DC1D42100E61CB9 /* JHCrashGuard */ = {
 			isa = PBXGroup;
 			children = (
-				3F8EE0C62DC1D42100E61CB9 /* NSObject+JHCrashGuard.h */,
-				3F8EE0C72DC1D42100E61CB9 /* NSObject+JHCrashGuard.m */,
+				3F8EE3402DCAFF3700E61CB9 /* JHCrashGuard.h */,
+				3F8EE3412DCAFF3700E61CB9 /* JHCrashGuard.m */,
 			);
 			path = JHCrashGuard;
 			sourceTree = "<group>";
@@ -147,7 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F8EE0C92DC1D42100E61CB9 /* NSObject+JHCrashGuard.m in Sources */,
+				3F8EE3422DCAFF3700E61CB9 /* JHCrashGuard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,8 +159,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 6ZA44MJL83;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = JHCrashGuardDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -176,6 +179,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.haocold.JHCrashGuardDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "glcoalme-dev-all";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -186,8 +191,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 6ZA44MJL83;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = JHCrashGuardDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -203,6 +211,8 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.haocold.JHCrashGuardDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "glcoalme-dev-all";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

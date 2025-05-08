@@ -9,4 +9,9 @@
 
 @implementation ClassA
 
+- (void)methodAA
+{
+    NSLog(@"methodAA");
+}
+
 @end
