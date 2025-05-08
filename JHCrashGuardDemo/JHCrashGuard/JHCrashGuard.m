@@ -39,9 +39,6 @@
 #define JHCrashGuardLog(...)
 #endif
 
-// 类方法相关的
-#define kClassMethod 0
-
 NSString *const JHCrashGuardUnrecognizedSelectorNotification = @"JHCrashGuardUnrecognizedSelectorNotification";
 NSString *const JHCrashGuardClassNameKey = @"className";
 NSString *const JHCrashGuardInstanceNameKey = @"instanceName";
